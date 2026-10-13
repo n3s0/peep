@@ -10,6 +10,13 @@ func main() {
 	if err != nil {
 		fmt.Printf("%v\n", err)
 	}
+	
+	fmt.Printf("%s\n\n", basicData)
 
-	fmt.Printf("%s\n", basicData.IP)
+	notBasicData, err := httpclients.GetShifterIpInfoData()
+	if err != nil {
+		fmt.Printf("%v\n", err)
+	}
+
+	fmt.Printf("%s\n", notBasicData)
 }

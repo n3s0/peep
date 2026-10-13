@@ -2,6 +2,7 @@ package httpclients
 
 import (
 	"fmt"
+	"time"
 	"net/http"
 	"encoding/json"
 )
@@ -24,9 +25,11 @@ const (
 )
 
 func GetIpInfoData() (*IpInfoResponse, error) {
-	var ipinfoData IpInfoResponse
+	var jsonData IpInfoResponse
 
-	client := &http.Client{}
+	client := &http.Client{
+		Timeout: 10 * time.Second,
+	}
 
 	fullUrl := fmt.Sprintf("https://%s/", ipInfoUrl)
 
@@ -41,10 +44,10 @@ func GetIpInfoData() (*IpInfoResponse, error) {
 	}
 	defer resp.Body.Close()
 
-	err := json.NewDecoder(resp.Body).Decode(&ipinfoData)
+	err = json.NewDecoder(resp.Body).Decode(&jsonData)
 	if err != nil {
 		return nil, fmt.Errorf("Error unmarshalling JSON: %v\n", err)
 	}
 
-	return &ipinfoData, nil
+	return &jsonData, nil
 }
