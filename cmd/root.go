@@ -14,6 +14,7 @@ var (
 	detail bool
 	simple bool
 	startTui bool
+	ipOnly bool
 )
 
 const appVersion string = "v0.1.0"
@@ -21,6 +22,7 @@ const appVersion string = "v0.1.0"
 var rootCmd = &cobra.Command{
 	Use: "peep",
 	Short: "Pulls plublic IP information from various APIs",
+	Args: cobra.MaximumNArgs(2),
 	Long: `peep is a CLI/TUI application that provides information about your public IP.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if version {
@@ -36,11 +38,15 @@ var rootCmd = &cobra.Command{
 		}
 		
 		if detail {
-			fmt.Printf("This is simple output\n")
+			output.GetDetailedInfo()
 		}
 		
 		if detail && simple{
 			fmt.Printf("This is detailed output\n")
+		}
+
+		if ipOnly {
+			output.GetIpOnly()
 		}
 	},
 }
@@ -53,8 +59,9 @@ func Execute() error {
 }
 
 func init() {
-	rootCmd.Flags().BoolVarP(&version, "version", "v",	false, "Outputs the app version and quits")
+	rootCmd.Flags().BoolVar(&version, "version", false, "Outputs the app version and quits")
 	rootCmd.Flags().BoolVarP(&startTui, "tui", "t", false, "Launches the TUI interface")
 	rootCmd.Flags().BoolVarP(&simple, "simple", "s", false, "Outputs a simple list of IP data")
 	rootCmd.Flags().BoolVarP(&detail, "detail", "d", false, "Outputs a verbose list of IP data")
+	rootCmd.Flags().BoolVarP(&ipOnly, "ip", "i", false, "Outputs only IP info")
 }

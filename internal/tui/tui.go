@@ -44,7 +44,7 @@ func (m model) View() string {
 	
 	rootBoxStyle := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
-		BorderForeground(lipgloss.Color("40")).
+		BorderForeground(lipgloss.Color("#FFFFFFFF")).
 		Padding(1, 2).
 		Margin(1, 1).
 		Width(boxWidth).
@@ -53,7 +53,7 @@ func (m model) View() string {
 	titleStyle := lipgloss.NewStyle().
 		Bold(true).
 		Foreground(lipgloss.Color("#00000000")).
-		Background(lipgloss.Color("40")).
+		Background(lipgloss.Color("#FFFFFFFF")).
 		Width(interiorWidth).
 		Align(lipgloss.Left)
 
@@ -63,7 +63,7 @@ func (m model) View() string {
 	
 	ipDataBoxStyle := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
-		BorderForeground(lipgloss.Color("40")).
+		BorderForeground(lipgloss.Color("#FFFFFFF")).
 		Padding(1, 2).
 		Margin(1, 1).
 		Width(interiorWidth).
@@ -72,13 +72,13 @@ func (m model) View() string {
 	ipDataHeader := lipgloss.NewStyle().
 		Bold(true).
 		Foreground(lipgloss.Color("#00000000")).
-		Background(lipgloss.Color("40")).
+		Background(lipgloss.Color("#FFFFFFFF")).
 		Width(interiorWidth - 5).
 		Align(lipgloss.Left)
 
 	locationDataBoxStyle := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
-		BorderForeground(lipgloss.Color("40")).
+		BorderForeground(lipgloss.Color("#FFFFFFF")).
 		Padding(1, 2).
 		Margin(1, 1).
 		Width(interiorWidth).
@@ -87,7 +87,7 @@ func (m model) View() string {
 	locationDataHeader := lipgloss.NewStyle().
 		Bold(true).
 		Foreground(lipgloss.Color("#00000000")).
-		Background(lipgloss.Color("40")).
+		Background(lipgloss.Color("#FFFFFFFF")).
 		Width(interiorWidth - 5).
 		Align(lipgloss.Left)
 	
@@ -98,8 +98,8 @@ func (m model) View() string {
 	ipDataBoxHeader := ipDataHeader.Render(ipHeader) + "\n"
 	
 	ipDataBoxBody := fmt.Sprintf("IP Address: %s\n", m.ipData.Ip)
-	ipDataBoxBody += fmt.Sprintf("ASN: %d\n", m.ipData.Asn)
 	ipDataBoxBody += fmt.Sprintf("AS Name: %s\n", m.ipData.AsName)
+	ipDataBoxBody += fmt.Sprintf("ASN: %d\n", m.ipData.Asn)
 	ipDataBoxBody += fmt.Sprintf("ISP: %s\n", m.ipData.Isp)
 	ipDataBoxBody += fmt.Sprintf("Org: %s\n", m.ipData.Org)
 	ipDataBoxBody += fmt.Sprintf("Connection Type: %s\n", m.ipData.ConnectionType)
